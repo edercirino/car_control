@@ -1,25 +1,36 @@
 <h3>Car: <%= @car.name%></h3>
 <h3>Plate: <%= @car.plate%></h3>
 
-<%= link_to "Calculate car average", new_car_refuel_path(@car) %>
-<%= link_to "Back", root_path %>
+<div class="mb-2">
+  <%= link_to "Calculate car average", new_car_refuel_path(@car),
+    class: "btn btn-primary" %>
+  <%= link_to "Back", root_path, class: "btn btn-info" %>
+</div>
 <table class="table table-bordered">
   <tr>
     <th>Liters filled</th>
+    <th>km driven</th>
     <th>Date</th>
     <th>Average</th>
     <th>Action</th>
   </tr>
   <% @car.refuels.each do |refuel|%>
+  <% if Refuel.exists?(refuel.id) %>
     <tr>
       <td><%=refuel.liters%> liters</td>
+      <td><%=refuel.km_driven%> km</td>
       <td><%=refuel.date%></td>
       <td><%=refuel.km_per_liter%> km/l</td>
       <td>
-        <%= link_to "Edit", edit_car_refuel_path(@car)%>
+        <div class="d-flex gap-2">
+        <%= link_to "Edit", edit_car_refuel_path(@car, refuel),
+        class: "btn btn-warning btn-sm"%>
         <%= button_to "Delete", car_refuel_path(@car),
-        method: :delete, data:{"turbo-confirm": "Are you sure?"}%>
+        method: :delete, data:{"turbo-confirm": "Are you sure?"},
+        class: "btn btn-danger btn-sm"%>
+      </div>
       </td>
     </tr>
+    <% end %>
   <%end%>
 </table>

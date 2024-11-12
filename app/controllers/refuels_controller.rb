@@ -1,11 +1,13 @@
 class RefuelsController < ApplicationController
-  before_action :set_car
+  before_action :set_car, only: [ :show, :update, :destroy ]
 
   def index
-    @refuels = @car.refuels
+    @car = Car.find(params[:car_id])
+    @refuel = Refuels.find_by(id: params[:id], car_id: params[:car_id])
   end
 
   def new
+    @car = Car.find(params[:car_id])
     @refuel = @car.refuels.build
   end
 
@@ -35,6 +37,8 @@ class RefuelsController < ApplicationController
   end
 
   def destroy
+    @car = Car.find(params[:car_id])
+    @refuel = @car.refuels.find(params[:id])
     @refuel.destroy
     redirect_to car_path(@car)
   end

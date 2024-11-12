@@ -1,9 +1,13 @@
 <%= form_with model: [@car, @refuel] do |form|%>
-  <%= form.date_field :date, placeholder: "date"%>
-  <%= form.text_field :km_driven, placeholder: "km driven"%>
-  <%= form.text_field :liters, placeholder: "liters"%>
+<div class="col-sm-4">
+  <div class="col-auto">
+    <%= form.date_field :date, placeholder: "date", class: "form-control" %>
+    <%= form.text_field :km_driven, placeholder: "km driven", class: "form-control"%>
+    <%= form.text_field :liters, placeholder: "liters", class: "form-control"%>
 
-  <%= form.submit %>
+    <%= form.submit class: "btn btn-success mt-2 mb-2" %>
+  </div>
+</div>
 <% end %>
 
-<%= link_to "back", car_path(@car)%>
+<%= link_to "Back", car_path(@car), class: "btn btn-info" %>
