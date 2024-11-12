@@ -1,0 +1,9 @@
+<%= form_with model: [@car, @refuel] do |form|%>
+  <%= form.date_field :date, placeholder: "date"%>
+  <%= form.text_field :km_driven, placeholder: "km driven"%>
+  <%= form.text_field :liters, placeholder: "liters"%>
+
+  <%= form.submit %>
+<% end %>
+
+<%= link_to "back", car_path(@car)%>

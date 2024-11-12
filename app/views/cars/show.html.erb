@@ -1,0 +1,25 @@
+<h3>Car: <%= @car.name%></h3>
+<h3>Plate: <%= @car.plate%></h3>
+
+<%= link_to "Calculate car average", new_car_refuel_path(@car) %>
+<%= link_to "Back", root_path %>
+<table class="table table-bordered">
+  <tr>
+    <th>Liters filled</th>
+    <th>Date</th>
+    <th>Average</th>
+    <th>Action</th>
+  </tr>
+  <% @car.refuels.each do |refuel|%>
+    <tr>
+      <td><%=refuel.liters%> liters</td>
+      <td><%=refuel.date%></td>
+      <td><%=refuel.km_per_liter%> km/l</td>
+      <td>
+        <%= link_to "Edit", edit_car_refuel_path(@car)%>
+        <%= button_to "Delete", car_refuel_path(@car),
+        method: :delete, data:{"turbo-confirm": "Are you sure?"}%>
+      </td>
+    </tr>
+  <%end%>
+</table>

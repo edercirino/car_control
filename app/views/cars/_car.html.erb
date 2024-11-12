@@ -1,0 +1,8 @@
+<%= form_with model: car do |form|%>
+  <%= form.text_field :name, placeholder: "Car name"%>
+  <%= form.text_field :plate, placeholder: "Plate"%>
+
+  <%= form.submit %>
+<% end %>
+
+<%= link_to "back", root_path%>
