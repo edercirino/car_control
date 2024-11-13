@@ -12,6 +12,7 @@ class RefuelsController < ApplicationController
   end
 
   def create
+    @car = Car.find(params[:car_id])
     @refuel = @car.refuels.build(refuel_params)
     if @refuel.save
       redirect_to car_path(@car)
