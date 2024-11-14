@@ -30,6 +30,8 @@ class RefuelsController < ApplicationController
   end
 
   def update
+    @car = Car.find(params[:car_id])
+    @refuel = @car.refuels.find(params[:id])
     if @refuel.update(refuel_params)
       redirect_to car_path(@car)
     else
